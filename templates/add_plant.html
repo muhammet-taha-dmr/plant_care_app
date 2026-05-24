@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width:600px;margin:0 auto">
+  <div style="margin-bottom:2rem">
+    <a href="/dashboard" style="color:#2d6a2d;text-decoration:none;font-size:.9rem">← Back to Dashboard</a>
+    <h1 style="margin-top:1rem">🌿 Add New Plant</h1>
+  </div>
+  
+  <div class="card">
+    <form method="POST">
+      <div style="margin-bottom:1.2rem">
+        <label for="name">Plant Name *</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Aloe Vera" required>
+      </div>
+      
+      <div style="margin-bottom:1.2rem">
+        <label for="species">Species</label>
+        <input type="text" id="species" name="species" placeholder="e.g. Succulent">
+      </div>
+      
+      <div style="margin-bottom:1.2rem">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" placeholder="e.g. Living Room Window">
+      </div>
+      
+      <div style="margin-bottom:1.2rem">
+        <label for="watering_interval_days">Watering Interval (Days) *</label>
+        <input type="number" id="watering_interval_days" name="watering_interval_days" value="7" min="1" required>
+        <small style="color:#6c757d;font-size:.8rem">How often should this plant be watered?</small>
+      </div>
+      
+      <div style="margin-bottom:1.5rem">
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Any special care instructions..."></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary" style="width:100%">Save Plant</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
