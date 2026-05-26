@@ -77,7 +77,7 @@ CREATE TABLE plants (
 ### Step-by-Step Setup
 1.  **Clone & Navigate:**
     ```bash
-    git clone https://github.com/tahademir/plant_care_app.git
+    git clone https://github.com/muhammet-taha-dmr/plant_care_app.git
     cd plant-care-app
     ```
 2.  **Environment Setup:**
@@ -126,12 +126,6 @@ The project includes basic unit tests for business logic in `tests/`.
 └── tests/           # Unit tests for core logic
 ```
 
----
-
-## 👨‍🏫 Q&A Support (For Presentation)
-*   **Why Raw SQL?** To demonstrate a deep understanding of relational algebra and database integrity without relying on abstractions.
-*   **How is "Days Until" calculated?** It uses Python's `datetime` module to find the delta between `last_watered + interval` and `today`.
-*   **Scalability?** While built for a single server, the logic can easily be migrated to PostgreSQL for higher concurrency.
 
 ---
 **Course:** Arel University Software Engineering Final Project  
