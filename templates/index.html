@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align:center;padding:4rem 0">
+  <div style="font-size:5rem">🌿</div>
+  <h1 style="font-size:3rem;margin:1rem 0;color:#2d6a2d">PlantTracker</h1>
+  <p style="font-size:1.2rem;color:#5a7a5a;margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto">
+    The smartest way to keep your green friends happy and healthy. Track watering schedules and never miss a drop.
+  </p>
+  {% if not session.get('user_id') %}
+    <a href="/register" class="btn btn-primary" style="padding:1rem 2.5rem;font-size:1.1rem;border-radius:50px;margin-right:1rem">Get Started</a>
+    <a href="/login" class="btn" style="padding:1rem 2.5rem;font-size:1.1rem;border-radius:50px;border:2px solid #2d6a2d;color:#2d6a2d">Sign In</a>
+  {% else %}
+    <a href="/dashboard" class="btn btn-primary" style="padding:1rem 2.5rem;font-size:1.1rem;border-radius:50px">Go to Dashboard</a>
+  {% endif %}
+</div>
+{% endblock %}
