@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width:800px;margin:0 auto">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem">
+    <div>
+      <a href="/dashboard" style="color:#2d6a2d;text-decoration:none;font-size:.9rem">← Back to Dashboard</a>
+      <h1 style="margin-top:.5rem">🌿 {{ plant.name }}</h1>
+    </div>
+    <div style="display:flex;gap:.5rem">
+      <a href="/plants/{{ plant.id }}/edit" class="btn" style="background:#6aad6a;color:white">Edit</a>
+      <form method="POST" action="/plants/{{ plant.id }}/delete" onsubmit="return confirm('Are you sure you want to remove this plant?')">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
+    <div class="card">
+      <h3 style="margin-bottom:1rem;font-size:1.1rem;color:#2d6a2d">General Information</h3>
+      <p><strong>Species:</strong> {{ plant.species or 'Not specified' }}</p>
+      <p><strong>Location:</strong> {{ plant.location or 'Not specified' }}</p>
+      <p><strong>Interval:</strong> Every {{ plant.watering_interval_days }} days</p>
+      <p><strong>Last Watered:</strong> {{ plant.last_watered or 'No logs yet' }}</p>
+      <div style="margin-top:1rem">
+        <span class="msg {{ status_class }}" style="display:inline-block;margin:0;padding:.4rem 1rem">{{ status_label }}</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom:1rem;font-size:1.1rem;color:#2d6a2d">Log Care</h3>
+      <form method="POST" action="/plants/{{ plant.id }}/water">
+        <label for="note">Notes (Optional)</label>
+        <textarea name="note" id="note" placeholder="e.g. Added nutrients" rows="2" style="margin-bottom:1rem"></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%">Record Watering</button>
+      </form>
+    </div>
+  </div>
+
+  {% if plant.notes %}
+  <div class="card">
+    <h3 style="margin-bottom:.5rem;font-size:1.1rem;color:#2d6a2d">Special Instructions</h3>
+    <p style="white-space:pre-wrap">{{ plant.notes }}</p>
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h3 style="margin-bottom:1rem;font-size:1.1rem;color:#2d6a2d">Watering History</h3>
+    {% if history %}
+    <table style="width:100%;border-collapse:collapse">
+      <thead>
+        <tr style="background:#e8f5e9">
+          <th style="padding:.75rem;border:1px solid #dee2e6;text-align:left">Date</th>
+          <th style="padding:.75rem;border:1px solid #dee2e6;text-align:left">Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in history %}
+        <tr>
+          <td style="padding:.75rem;border:1px solid #dee2e6">{{ log.watered_at }}</td>
+          <td style="padding:.75rem;border:1px solid #dee2e6">{{ log.note or '-' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p style="color:#6c757d;text-align:center">No care history recorded yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
